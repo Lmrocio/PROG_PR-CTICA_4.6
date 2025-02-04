@@ -21,11 +21,11 @@ class Cafetera(var ubicacion: String) {
     fun servirTaza(taza: Taza){
 
         if(cantidad >= taza.capacidad){
-            taza.cantidad = taza.capacidad
+            taza.llenar()
 
             cantidad -= taza.capacidad
         } else {
-            taza.cantidad = taza.capacidad
+            taza.llenar(cantidad)
             llenar()
         }
     }
@@ -37,7 +37,9 @@ class Cafetera(var ubicacion: String) {
     fun agregarCafe(cafe: Int = 200){
         if(cantidad + cafe <= capacidad){
             cantidad += cafe
-        } else { println("No se puede añadir más café de la capacidad máxima.")}
+        } else {
+            cantidad = capacidad
+        }
     }
 
     override fun toString(): String{
